@@ -17,8 +17,7 @@ def generate_keys():
 
 def sign(message, private_key):
     message = bytes(str(message), 'utf-8')
-    signature = private_key.sign(message, padding.PSS)
-    sig = signature.sign(
+    sig = private_key.sign(
         message,
         padding.PSS(
             mgf=padding.MGF1(hashes.SHA256()),

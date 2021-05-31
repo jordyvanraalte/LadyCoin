@@ -15,6 +15,7 @@ class Block:
 
         self.data = data
 
+    # calculates hash
     def calc_hash(self):
         digest = hashes.Hash(hashes.SHA256(), backend=default_backend())
         digest.update(bytes(str(self.data), 'utf8'))
