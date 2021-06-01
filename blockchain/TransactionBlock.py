@@ -38,7 +38,7 @@ class TxBlock(Block):
         digest.update(bytes(str(self.nonce), 'utf8'))
         this_hash = digest.finalize()
         # looks if nonce got amount of leading zero's
-        if this_hash[:LEADING_ZEROS] != bytes(''.join(['\x4f' for i in range(LEADING_ZEROS)]), 'utf8'):
+        if this_hash[:LEADING_ZEROS] != bytes(''.join(['\x00' for i in range(LEADING_ZEROS)]), 'utf8'):
             return False
         return int(this_hash[LEADING_ZEROS]) < NEXT_CHAR_LIMIT
 
@@ -50,7 +50,7 @@ class TxBlock(Block):
                 return self.nonce
         return None
 
-    # calculates the toal input and output of the transactionblock.
+    # calculates the toyal input and output of the transactionblock.
     def __count_totals(self):
         total_in = 0
         total_out = 0
